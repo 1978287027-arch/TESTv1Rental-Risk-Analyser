@@ -1,36 +1,87 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🏠 租房风险分析师
 
-## Getting Started
+AI 驱动的房源风险评估工具，帮你在租房前识别风险、避免踩坑。
 
-First, run the development server:
+## 功能
+
+- 📷 **房源图片分析** — 识别网图、过度美化、信息缺失
+- 🔍 **真实性判断** — 判断房东直租 / 中介 / 品牌公寓
+- 💰 **价格分析** — 基于城市和价格判断合理性
+- ⚠️ **避坑建议** — 列出中介费、合同、押金等风险点
+- ❓ **提问建议** — 生成优先级排序的向房东提问清单
+
+## 快速开始
+
+### 1. 配置环境变量
+
+```bash
+cp .env.local.example .env.local
+```
+
+编辑 `.env.local`：
+
+```env
+OPENAI_API_KEY=your-api-key
+OPENAI_BASE_URL=https://api.deepseek.com
+OPENAI_MODEL=deepseek-chat
+```
+
+### 2. 安装依赖
+
+```bash
+npm install
+```
+
+### 3. 启动开发服务器
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+打开 http://localhost:3000
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### 4. 生产构建
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+npm run build
+npm start
+```
 
-## Learn More
+## 技术栈
 
-To learn more about Next.js, take a look at the following resources:
+- **前端**: Next.js + TypeScript + Tailwind CSS
+- **后端**: Next.js API Routes
+- **AI**: OpenAI 兼容 API（默认 DeepSeek）
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## 项目结构
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+```
+app/
+├── api/analyze/route.ts    # 唯一后端接口
+├── components/
+│   ├── InputForm.tsx        # 输入表单
+│   ├── ImageUpload.tsx      # 图片上传组件
+│   ├── ReportView.tsx       # 报告页总容器
+│   ├── RiskScoreCard.tsx    # 综合风险评分卡片
+│   ├── ModuleCard.tsx       # 通用模块卡片
+│   └── LoadingOverlay.tsx   # 加载状态
+├── lib/
+│   ├── types.ts             # TypeScript 类型定义
+│   ├── prompts.ts           # LLM Prompt 模板
+│   └── utils.ts             # 工具函数
+├── globals.css
+├── layout.tsx
+└── page.tsx                 # 主页面（状态切换）
+```
 
-## Deploy on Vercel
+## 环境变量
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+| 变量 | 说明 | 示例 |
+|------|------|------|
+| `OPENAI_API_KEY` | API 密钥 | `sk-xxx` |
+| `OPENAI_BASE_URL` | API 地址 | `https://api.deepseek.com` |
+| `OPENAI_MODEL` | 模型名称 | `deepseek-chat` |
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## 免责声明
+
+分析结果由 AI 生成，仅供参考，不构成法律或投资建议。租房决策请结合实际情况综合判断。

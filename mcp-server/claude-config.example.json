@@ -1,0 +1,14 @@
+{
+  "mcpServers": {
+    "vision-server": {
+      "command": "npx",
+      "args": ["tsx", "mcp-server/vision-server.ts"],
+      "cwd": "C:/Users/ZhuanZ/rental-risk-analyzer",
+      "env": {
+        "VISION_API_KEY": "sk-5bd5fe16c01b40d2bc24e70efa872cb2",
+        "VISION_BASE_URL": "https://dashscope.aliyuncs.com/compatible-mode/v1",
+        "VISION_MODEL": "qwen3-vl-32b-instruct"
+      }
+    }
+  }
+}
